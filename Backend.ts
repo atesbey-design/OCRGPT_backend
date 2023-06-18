@@ -3,11 +3,8 @@ import fastify from 'fastify'
 
 import UserService from './services/User/Server'
 import cors from '@fastify/cors'
-
-import AnnouncmentService from './services/Announcement/Server'
-
 import Connectors from './connectors/index'
-import fastifyJwt from '@fastify/jwt'
+const fastifyJwt = require('fastify-jwt')
 const server = fastify({ maxParamLength:700, logger: true })
 
 server.register(fastifyJwt, {
@@ -26,7 +23,11 @@ Connectors
 
 server.register(UserService)
 
-server.register(AnnouncmentService)
+
+server.get('/', async (request, reply) => {
+  return { hello: 'world' }
+})
+
 
 server.listen({ port: 11000 , host:"0.0.0.0"}, (err, address) => {
   if (err) {
@@ -36,4 +37,4 @@ server.listen({ port: 11000 , host:"0.0.0.0"}, (err, address) => {
   console.log(`server listening on ${address}`)
 })
 
-//TODO:Prepare App func
+

@@ -1,6 +1,7 @@
 {
   "extends": "fastify-tsconfig",
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "outDir": "dist",
     "sourceMap": true,
     "baseUrl": "./src",
